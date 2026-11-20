@@ -1,0 +1,33 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Code auschecken
+        uses: actions/checkout@v5
+
+      - name: Python einrichten
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+
+      - name: Abhängigkeiten installieren
+        run: pip install -r requirements.txt
+
+      - name: Tests ausführen
+        run: pytest -v --junitxml=report.xml
+
+      # Auch bei fehlgeschlagenen Tests hochladen:v Flaky-Test-Monitor braucht sie.
+      - name: Test-Report hochladen
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: junit-report
+          path: report.xml
