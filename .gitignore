@@ -221,3 +221,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Generierte Test-Reports (werden bei jedem Lauf neu erzeugt)
+report.xml
+report_pretty.xml
