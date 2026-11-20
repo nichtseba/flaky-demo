@@ -24,7 +24,7 @@ jobs:
       - name: Tests ausführen
         run: pytest -v --junitxml=report.xml
 
-      # Auch bei fehlgeschlagenen Tests hochladen:v Flaky-Test-Monitor braucht sie.
+      # Auch bei fehlgeschlagenen Tests hochladen: Flaky-Test-Monitor braucht sie.
       - name: Test-Report hochladen
         if: always()
         uses: actions/upload-artifact@v5
